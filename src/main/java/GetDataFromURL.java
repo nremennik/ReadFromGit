@@ -37,7 +37,7 @@ public class GetDataFromURL
             e.printStackTrace();
         }
         Set<String> urlForSearch = parserGit.getUrlGit();
-        urlForSearch.forEach((value)->System.out.println(value));
+       // urlForSearch.forEach((value)->System.out.println(value));
 
         for(String s: urlForSearch)
         {
@@ -47,7 +47,7 @@ public class GetDataFromURL
             }
             catch (IOException e)
             {
-                System.out.println("No file README.md");
+                // System.out.println("No file README.md");
 
                 break;
             }
