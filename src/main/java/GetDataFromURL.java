@@ -62,7 +62,6 @@ public class GetDataFromURL
 
         }
 
-
         SearchMaxWords printWords = new SearchMaxWords();
         printWords.getMaxCountWords(parserGit.getWords(), 3);
     }
