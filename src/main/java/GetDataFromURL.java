@@ -2,6 +2,11 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Set;
 
+/*
+* Вот некоторые комментарии:
+1) Неправильный результат. Очевидно, основная причина в том, что при первом же IOException мы полностью прекращаем процессинг (break вместо continue).
+2) Недостаточно чистый код: классы вне пакета, слишком длинные методы с логикой разного уровня, методы с префиксом get которые на самом деле ничего не возвращают, независимые if условия вместо if-else if-else и т.д.
+3) Последовательная обработка URL-ов, вместо параллельной (скорость работы).*/
 
 public class GetDataFromURL
 {
@@ -44,20 +49,18 @@ public class GetDataFromURL
             try
             {
                 inputStream =connectToGit.getConnectionToGit(readMeUrl+user+s+readMe);
+                try
+                {
+                    parserGit.getParserText(inputStream);
+                }
+                catch (IOException e)
+                {
+                    e.printStackTrace();
+                }
             }
             catch (IOException e)
             {
-                // System.out.println("No file README.md");
-
-                break;
-            }
-            try
-            {
-                parserGit.getParserText(inputStream);
-            }
-            catch (IOException e)
-            {
-                e.printStackTrace();
+                System.out.println("No file README.md, url: "+s);
             }
 
         }
